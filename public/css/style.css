@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.item:hover{
+    transform: scale(1.05);
+}
+.container{
+    max-width: 90%;
+    margin:auto;
+}
+
+header{ 
+    align-items: center;
+    background: #ffffff;
+    color: #ffffff;
+    overflow: hidden;
+    text-align: center;
+
+    padding: 35px;
+    margin-bottom: 15px;
+
+    /*--Degradados--*/
+    background: rgb(255,148,0);
+    background: -moz-linear-gradient(128deg, rgba(255,148,0,1) 0%, rgba(255,110,86,1) 100%);
+    background: -webkit-linear-gradient(128deg, rgba(255,148,0,1) 0%, rgba(255,110,86,1) 100%);
+    background: linear-gradient(128deg, rgba(255,148,0,1) 0%, rgba(255,110,86,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff9400",endColorstr="#ff6e56",GradientType=1); 
+}
+
+nav{
+    display: table-column;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+.item-end{
+    float: right;
+    margin-left: 15px;
+}
+
+.item{
+    background-color: #aaaaaa;
+    border: 1px #e0e0ee solid;
+    margin-bottom: 5px;
+    padding: 15px;
+}
+#quitarVideo{
+    text-align: end;
+    padding: 15px;
+    color: #fff;
+    background-color: rgba(255,148,0,1);
+}
+video{
+    margin-top: 15px;
+    width: 100%;
+}
