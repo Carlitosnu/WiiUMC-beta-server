@@ -9,11 +9,11 @@ WiiUMC is a Plex implementation for the U. For the moment only support .MP4 vide
     + An Stable Internet Connection.
     + WiiU connected to the PC internet.
 ### Instructions.
-    + On your PC clone this repository, Then extract it.
-    + Then open a terminal in the proyect and type `npm install`
-    + When the packages installation be finished type `node .`
-    + Put your videos on the `/public/videos` folder (Just **mp4**)
-    + Enjoy it!
++ On your PC clone this repository, Then extract it.
++ Then open a terminal in the proyect and type `npm install`
++ When the packages installation be finished type `node .`
++ Put your videos on the `/public/videos` folder (Just **mp4**)
++ Enjoy it!
     
 ## What's comming?
     + Support for multiple video files.
