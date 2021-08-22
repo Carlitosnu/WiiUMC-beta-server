@@ -23,7 +23,7 @@ function insertMedia(Object, media) {
 function play(id, mediaArray) {
     for (var i = 0; i < mediaArray.length; i++) {
         if (i === id) {
-            insertMedia(Video, "<video src='" + mediaArray[id].server + "'controls autoplay></video>");
+            insertMedia(Video, "<video src='" + mediaArray[id].ubication + "'controls autoplay></video>");
         }
     }
 }

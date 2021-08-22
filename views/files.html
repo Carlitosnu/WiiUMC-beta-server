@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Files</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    
+    <style>
+        nav{
+            padding: 15px;
+        }
+        #fileContainer{
+            margin-top: 35px;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 5px;
+        }
+        a{
+            text-decoration: none;
+            color: #000;
+        }
+        .btn{
+            color: #000;
+            font-size: 15px;
+        }
+        .btn:hover{
+            color: #222222;
+        }
+        .videoCard{
+            background-color: #e0e0e0;
+            display: grid;
+            grid-template-columns: 11fr 1fr;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .videoCard a{
+            display: grid;
+            grid-template-columns: 3fr 9fr;
+        }
+        .videoCard p{
+            font-weight: 700;
+        }
+        .videoCard i{
+            font-size: 35px;
+            text-align: center;
+        }
+        .file-select{
+            color: #000;
+            background: transparent; 
+            border:none;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                color: #eee;
+                background: #121212;
+            }
+            .btn{
+                color: #fff;
+            }
+            body a {
+                color: #fff;
+            }
+
+            .videoCard{
+                background-color: #222222;
+            }
+            .btn:hover{
+                color: #e0e0e0;
+            }
+            .file-select{
+                color: #fff;
+            }
+        }
+        @media only screen and (max-width: 600px) {
+            #fileContainer{
+                grid-template-columns: repeat(1,1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <form>
+                    <div class="input-group">
+                        <input type="file" class="file-select form-control" id="inputGroupFile02">
+                        <button class="input-group-text btn-success" for="inputGroupFile02">Upload</button>
+                    </div>
+                  </form>
+            </li>
+          </ul>
+    </nav>
+    <div class="container">
+        <h2>File Explorer</h2>
+        <div id="files-ubication"></div>
+        <div id="error"></div>
+        <div id="fileContainer" class=""></div>
+    </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="/javascript/files.js"></script>
+</body>
+</html>
