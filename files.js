@@ -24,7 +24,7 @@ const getFolderFiles = () => {
 }
 
 fs.watch(f,{encoding: "utf-8"},() => getFolderFiles());
-
+console.log(files);
 const removeFile = async(fileID) => {
     fileID = String(fileID)
     const fileToRemove = files.find(e=>e.id===fileID);
