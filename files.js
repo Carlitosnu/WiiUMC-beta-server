@@ -4,8 +4,8 @@ const path = require("path")
 let files = []
 const f = path.resolve(__dirname + "/public/videos")
 
-if(fs.existsSync(f)){
-	fs.mkdirSync(f, 0744);
+if(!fs.existsSync(f)){
+    fs.mkdirSync(f,0744)
 }
 
 const getFolderFiles = () => {
