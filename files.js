@@ -1,10 +1,10 @@
 const uuid = require("uuid").v4;
-let fs = require("fs");
+const fs = require("fs");
 const path = require("path")
 let files = []
 const f = path.resolve(__dirname + "/public/videos")
 
-if(fs.existSync(f)){
+if(fs.existsSync(f)){
 	fs.mkdirSync(f, 0744);
 }
 
