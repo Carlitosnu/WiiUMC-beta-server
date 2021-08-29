@@ -19,6 +19,11 @@
             grid-template-columns: repeat(4,1fr);
             gap: 5px;
         }
+        nav{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 5px;
+        }
         a{
             text-decoration: none;
             color: #000;
@@ -76,14 +81,15 @@
             }
         }
         @media only screen and (max-width: 600px) {
-            #fileContainer{
+            #fileContainer, nav{
                 grid-template-columns: repeat(1,1fr);
             }
         }
     </style>
 </head>
 <body>
-    <nav>
+    <nav class="container">
+        <a href="/api/admin/demomode" class="btn btn-danger">Activar/Desactivar modo Debug</a>
         <ul class="nav justify-content-end">
             <li class="nav-item">
                 <form>
@@ -97,9 +103,10 @@
     </nav>
     <div class="container">
         <h2>File Explorer</h2>
-        <div id="files-ubication"></div>
         <div id="error"></div>
+        <div id="files-ubication"></div>
         <div id="fileContainer" class=""></div>
+        
     </div>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>

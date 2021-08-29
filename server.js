@@ -4,6 +4,7 @@ const { getFolderFiles } = require("./files");
 const { sucess } = require("./logger");
 const { router } = require("./router");
 const fileupload = require("express-fileupload")
+const settings = require("./settings.json")
 const app = express();
 
 const ip = require("ip").address()
@@ -13,9 +14,11 @@ getFolderFiles()
 app.use(express.json());
 app.use(fileupload())
 app.use(express.urlencoded({extended:false}))
-let PORT = process.env.PORT || 3000
+let PORT = process.env.PORT || settings.port
 app.use(express.static(__dirname + '/public'));
 app.use("/",router)
+app.set("view engine","ejs")
+app.set("views",__dirname + "/views")
 app.listen(PORT,()=>{
     console.log(`
     _       _  _  _  _     _   __   __     ___   

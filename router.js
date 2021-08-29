@@ -3,20 +3,25 @@ const { writeFileSync } = require("fs");
 const router = Router();
 const path = require("path");
 const { getFolderFiles, files, removeFile } = require("./files");
+const { sucess } = require("./logger");
 const settings = require("./settings.json")
 
 router.get("/",(req,res)=>{
     if(req.headers["user-agent"].includes("Nintendo WiiU") || settings.debug){
-        return res.sendFile(path.join(__dirname,"/views/index.html"))
+        return res.render("index",{
+            videos: files()
+        })
     }else{
-        return res.sendFile(path.join(__dirname,"/views/pcIndex.html"))
+        return res.render("pcIndex",{
+            ip: require("ip").address() + `:${process.env.PORT || settings.port}`
+        })
     }
 })
 router.get("/admin/files",(req,res)=>{
     if(req.headers["user-agent"].includes("Nintendo WiiU")){
         return res.send("Sorry this route is only for PC & other devices!!")
     }else{
-        return res.sendFile(path.join(__dirname,"/views/files.html"))
+        return res.render("files")
     }
 })
 router.delete("/api/admin/video",(req,res) => {
@@ -46,6 +51,36 @@ router.get("/media.js",(req,res)=>{
     return res.send (`
         const movies = ${JSON.stringify(files())}
     `)
+})
+
+
+router.get("/view/:videoname",(req,res)=>{
+    const {videoname} = req.params;
+
+    if(!videoname){
+        return res.redirect("/");
+    }
+
+    res.render("videos",{
+        file: files().find(e=>videoname.split(".mp4")[0] === e.name)
+    })
+
+})
+
+router.get("/api/admin/demomode",(req,res)=>{
+    if(req.headers["user-agent"].includes("Nintendo WiiU")){
+        return res.status(400).send("Sorry this action only can be with a pc")
+    }
+    if(!settings.debug) {
+        settings.debug = true;
+        sucess("Debuggin mode is active")
+        return res.redirect("/admin/files")
+    }
+    if(settings.debug)  {
+        settings.debug = false;
+        sucess("Debuggin mode is unactive")
+        return res.redirect("/admin/files")
+    }
 })
 
 // Route for PC.

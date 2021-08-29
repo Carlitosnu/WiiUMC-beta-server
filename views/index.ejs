@@ -17,20 +17,20 @@
             <div>
                 <p>WiiUMC es un reproductor de musica customizado para la consola WiiU</p>
                 <p><b>&copy; Carlos Núñez</b></p>
-
-                <nav><ul>
-                    <li><a href="#">Videos</a></li>
-                    <li><a href="#">Musica</a></li>
-                </ul></nav>
             </div>
 
     </header>
-    <div class="app container" id="app"></div>
-    <div id="quitarVideo" class="container">Cerrar reproductor</div>
-    <div id="videoZone" class="container"></div>
-    <script src="/media.js"></script>
-    <script src="javascript/application.js"></script>
-    <script src="javascript/script.js"></script>
+    <div class="container">
+        <ul>
+            <% videos.forEach(e => { %>
+                <li class="item">
+                    <a href="view/<%= e.name + ".mp4" %>">
+                        <%= e.name %>
+                    </a>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
 </body>
 </html>
 

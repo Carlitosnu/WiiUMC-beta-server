@@ -1,4 +1,4 @@
-let files,container,error;
+let files,container,error,message;
 
 (async()=>{
     files = document.querySelector("#files-ubication");
@@ -7,7 +7,6 @@ let files,container,error;
     let f = await fetch("/api/media");
     f = await f.json()
     files.innerHTML = `<b>${f.files.length} files on route</b> - ${f.ubication}`
-
     renderP(f);
     console.log(f)
 })()
@@ -44,6 +43,7 @@ function renderP(f) {
 const form = document.forms[0]
 form.onsubmit = async(e) => {
     e.preventDefault();
+    error.innerHTML = `<div class="alert alert-success d-flex align-items-center" role="alert"><div class="spinner-border text-success flex-shrink-0 me-2" aria-label="Warning:"><span class="visually-hidden">Loading...</span></div><div>Uploading ...</div></div>`
     const send = form[0].files[0]
     const formulario = new FormData();
     formulario.append("file", send);
