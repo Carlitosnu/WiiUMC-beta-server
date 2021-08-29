@@ -1,13 +1,13 @@
-# WiiUMC SERVER - BETA 2.
+# WiiUMC SERVER - BETA 3.
 ## Review
 WiiUMC is a Plex implementation for the U. For the moment only support .MP4 video format, I trying to implement more format's and API'S for just enjoy it.
 
 ## How I can use it?
 ### Requeriments.
-    + An PC connected to internet.
-    + Install Node.JS on your PC.
+    + An PC connected to internet (Or termux on smartphone).
+    + Install Node.JS on your PC/Termux.
     + An Stable Internet Connection.
-    + WiiU connected to the PC internet.
+    + WiiU connected to the PC/Android internet.
 ### Instructions.
 + On your PC clone this repository, Then extract it.
 + Then open a terminal in the proyect and type `npm install`
@@ -16,9 +16,9 @@ WiiUMC is a Plex implementation for the U. For the moment only support .MP4 vide
 + Enjoy it!
     
 ## What's comming?
-    + Support for multiple video files.
-    + Support for music.
-    + Support for photos.
+    + Support for multiple video files. (Posible beta 5)
+    + Support for music. (Posible beta 4)
+    + Support for photos. (Posible beta 6)
     + Mobile App.
     + Native App for WiiU.
     
