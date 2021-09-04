@@ -1,0 +1,18 @@
+{
+    "nav": {
+        "video": "Videos",
+        "music": "Music",
+        "screenshot": "Screenshot",
+        "image": "Images",
+        "close": "Exit"
+    },
+    "Description":"WiiUMC is an multimedia player developed for the WiiU",
+    "screenshot":{
+        "title": "Take Screenshot",
+        "form":{
+            "label": "Upload to Imgur?",
+            "button": "Upload it!"
+        }
+    },
+    "dev": "This section is not fully developed, we're working to finish it!"
+}

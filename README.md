@@ -1,4 +1,5 @@
-# WiiUMC SERVER - BETA 3.
+# WiiUMC SERVER - BETA 3.1
+Esta seccion es en ingles, para la versión en español haz [click aqui](/docs/es/main.md)
 ## Review
 WiiUMC is a Plex implementation for the U. For the moment only support .MP4 video format, I trying to implement more format's and API'S for just enjoy it.
 

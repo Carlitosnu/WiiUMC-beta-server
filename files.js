@@ -12,22 +12,34 @@ const getFolderFiles = () => {
     let fls = fs.readdirSync(f,{
         encoding: "utf-8"
     })
-    fls = fls.map(e=>{
+
+    const dirs = []
+    fls.forEach(e=>{
         let id = uuid()
         if(e.endsWith(".mp4")){
-            return {
+            dirs.push({
                 name: e.replace(".mp4",""),
+                type: "mp4",
                 ubication:`/videos/${e}`,
                 id
-            }
+            })
+        }else if(e.endsWith(".ogg")){
+            dirs.push({
+                name: e.replace(".ogg",""),
+                type: "ogg",
+                ubication:`/videos/${e}`,
+                id
+            })
         }
-        return false
     })
-    files = fls;
+    files = dirs;
+    console.log(dirs);
 }
 
 fs.watch(f,{encoding: "utf-8"},() => getFolderFiles());
+
 console.log(files);
+
 const removeFile = async(fileID) => {
     fileID = String(fileID)
     const fileToRemove = files.find(e=>e.id===fileID);

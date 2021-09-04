@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screenshot Service</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h2><%= lang.screenshot.title%></h2>
+        <p>Esta sección esta en desarrollo por lo tanto no esta terminada, esperamos terminarla pronto</p>
+    </header>
+    <div id="main">
+        <form class="container" action="/screenshot" method="POST">
+            <input id="screenshot" name="screenshot" type="file">
+            <br>
+            <input type="checkbox" name="internet" id="internet">
+            <label for="internet"><%= lang.screenshot.form.label%></label>
+            <button class="btn" type="submit"><%= lang.screenshot.form.button%></button>
+        </form>
+    </div>
+    <menu>
+        <ul>
+            <li><a href="/"><%= lang.nav.video %></a> </li>
+            <li><a href="/music"><%= lang.nav.music %></a> </li>
+            <li><a href="/images"><%= lang.nav.image %></a> </li>
+            <li><a href="/screenshot"><%= lang.nav.screenshot %></a> </li>
+        </ul>
+    </menu>
+</body>
+</html>

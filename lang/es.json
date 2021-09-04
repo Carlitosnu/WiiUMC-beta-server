@@ -1,0 +1,18 @@
+{
+    "nav": {
+        "video": "Videos",
+        "music": "Musica",
+        "screenshot": "Captura de pantalla",
+        "image": "Imagenes",
+        "close": "Salir"
+    },
+    "Description":"WiiUMC es un reproductor multimedia desarrollado para WiiU",
+    "screenshot":{
+        "title": "Capturar Pantalla",
+        "form":{
+            "label": "¿Subir a Imgur?",
+            "button": "¡Subir!"
+        }
+    },
+    "dev": "Esta sección todavia no esta terminada, estamos trabajando para terminarla pronto!"
+}

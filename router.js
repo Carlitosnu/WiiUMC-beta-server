@@ -1,14 +1,17 @@
+const e = require("express");
 const {Router} = require("express");
 const { writeFileSync } = require("fs");
 const router = Router();
 const path = require("path");
 const { getFolderFiles, files, removeFile } = require("./files");
+const { langFiles } = require("./getIP");
 const { sucess } = require("./logger");
 const settings = require("./settings.json")
 
-router.get("/",(req,res)=>{
+router.get("/",langFiles,(req,res)=>{
     if(req.headers["user-agent"].includes("Nintendo WiiU") || settings.debug){
         return res.render("index",{
+            lang: req.lang,
             videos: files()
         })
     }else{
@@ -35,7 +38,7 @@ router.delete("/api/admin/video",(req,res) => {
 router.post("/api/admin/video",(req,res)=>{
     const file = req.files.file;
 
-    if(!file.name.endsWith(".mp4") && !file.name.endsWith(".jpg")){
+    if(!file.name.endsWith(".mp4") && !file.name.endsWith(".ogg")){
         return res.status(400).send("Sorry only MP4 files supported");
     }
 
@@ -60,9 +63,13 @@ router.get("/view/:videoname",(req,res)=>{
     if(!videoname){
         return res.redirect("/");
     }
-
+    let video;
+    if(videoname.endsWith(".mp4")) video = videoname.split(".mp4")[0];
+    if(videoname.endsWith(".mkv")) video = videoname.split(".mkv")[0];
+    if(videoname.endsWith(".ogg")) video = videoname.split(".ogg")[0];
+    console.log(files().find(e=> video === e.name));
     res.render("videos",{
-        file: files().find(e=>videoname.split(".mp4")[0] === e.name)
+        file: files().find(e=>video.split(".mp4")[0] === e.name)
     })
 
 })
@@ -88,6 +95,34 @@ router.get("/api/media",(req,res)=>{
     return res.json({
         ubication: __dirname + "/public/videos",
         files: files()
+    })
+})
+
+// Routes for Screenshot service
+router.get("/screenshot",langFiles,(req,res)=>{
+    if(req.headers["user-agent"].includes("Nintendo WiiU") || settings.debug){
+        res.render("screenshots/wiiu.view.ejs",{
+            lang: req.lang
+        });
+    }else{
+        res.send("Pendiente...")
+    }
+})
+router.post("/screenshot",langFiles,(req,res)=>{
+    const screenshot = req.files;
+    console.log(screenshot);
+})
+router.get("/music",langFiles,(req,res)=>{
+    res.render("develop",{
+        type: req.lang.nav.music,
+        lang: req.lang
+    })
+})
+
+router.get("/images",langFiles,(req,res)=>{
+    res.render("develop",{
+        type: req.lang.nav.video,
+        lang: req.lang
     })
 })
 module.exports = {router}

@@ -6,31 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 
 <body>
+        <menu>
+            <ul>
+                <li><a href="/"><%= lang.nav.video %></a> </li>
+                <li><a href="/music"><%= lang.nav.music %></a> </li>
+                <li><a href="/images"><%= lang.nav.image %></a> </li>
+                <li><a href="/screenshot"><%= lang.nav.screenshot %></a> </li>
+            </ul>
+        </menu>
     <header>
-            <h1 class="logo item-start">
-                WiiUMC SERVER
-            </h1>
-            <div>
-                <p>WiiUMC es un reproductor de musica customizado para la consola WiiU</p>
-                <p><b>&copy; Carlos Núñez</b></p>
-            </div>
+        <h1 class="logo item-start">
+            WiiUMC SERVER
+        </h1>
+        <div>
+            <p><%= lang.Description %></p>
+            <p><b>&copy; Carlos Núñez</b></p>
+        </div>
 
     </header>
-    <div class="container">
-        <ul>
-            <% videos.forEach(e => { %>
-                <li class="item">
-                    <a href="view/<%= e.name + ".mp4" %>">
-                        <%= e.name %>
-                    </a>
-                </li>
-            <% }) %>
-        </ul>
-    </div>
+    <main class="body-content post-list">
+        <div class="container">
+            <ul>
+                <% videos.forEach(e => { %>
+                    <li class="item">
+                        <a href="view/<%= e.name + "." + e.type %>">
+                            <%= e.name %>
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+    </main>
 </body>
 </html>
 
