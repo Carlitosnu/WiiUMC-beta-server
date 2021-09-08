@@ -16,8 +16,10 @@ app.use(fileupload())
 app.use(express.urlencoded({extended:false}))
 let PORT = process.env.PORT || settings.port
 
+
+app.use("/favicon.ico",express.static(__dirname + 'public/resources/favicon.ico'));
 app.use("/css",express.static(__dirname + '/public/css'));
-app.use("/video",express.static(__dirname + '/public/videos'));
+app.use("/videos",express.static(__dirname + '/public/videos'));
 app.use("/javascript",express.static(__dirname + '/public/javascript'));
 app.use("/resources",express.static(__dirname + '/public/resources'));
 app.use("/images",express.static(__dirname + '/public/images'));
