@@ -99,10 +99,18 @@ menu li {
     font-weight: 700;
 }
 
-form{
-    border: 1px solid #aaaaaa;
-    padding: 35px;
+input{
+    padding: 15px;
     border-radius: 5px;
+    border: none;
+    width: 87.2%;
+}
+form{
+    padding: 25px 0;
+}
+.btn.search{
+    width: 10%;
+    padding: 15px;
 }
 
 /*

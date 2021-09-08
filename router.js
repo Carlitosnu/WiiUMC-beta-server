@@ -3,7 +3,7 @@ const {Router} = require("express");
 const { writeFileSync } = require("fs");
 const router = Router();
 const path = require("path");
-const { getFolderFiles, files, removeFile } = require("./files");
+const { getFolderFiles, files, removeFile,m3uParser } = require("./files");
 const { langFiles } = require("./getIP");
 const { sucess } = require("./logger");
 const settings = require("./settings.json")
@@ -123,6 +123,42 @@ router.get("/images",langFiles,(req,res)=>{
     res.render("develop",{
         type: req.lang.nav.video,
         lang: req.lang
+    })
+})
+
+router.get("/api/tv",(req,res)=>[
+    res.json({
+        list: m3uParser()
+    })
+])
+router.get("/tv/:showid",(req,res)=>{
+    const {showid} = req.params;
+    const video = m3uParser().find(e=>e.name === showid);
+
+    res.render("tv", {
+        video
+    });
+})
+
+router.get("/tv",langFiles,(req,res)=>{
+    res.render("tv.ui.ejs",{
+        lang:req.lang,
+        tvShows: {
+            items: m3uParser()
+        }
+    })
+})
+
+router.get("/tv-search/:query",langFiles,(req,res)=>{
+    const query = req.params.query;
+    const tvShows = m3uParser();
+    
+    const results = tvShows.filter(e=>e.name.toLowerCase().includes(query.toLowerCase()));
+    res.render("tv.ui.ejs",{
+        lang: req.lang,
+        tvShows: {
+            items: results
+        }
     })
 })
 module.exports = {router}

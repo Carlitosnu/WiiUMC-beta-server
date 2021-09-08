@@ -16,7 +16,9 @@
     "express-fileupload": "^1.2.1",
     "fs": "^0.0.1-security",
     "ip": "^1.1.5",
+    "iptv-playlist-parser": "^0.8.0",
     "morgan": "^1.10.0",
+    "playlist-parser": "^0.0.11",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

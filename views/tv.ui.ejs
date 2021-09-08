@@ -11,7 +11,7 @@
     <link rel="apple-touch-icon" href="/resources/apple-touch-icon-180x180.png" sizes="180x180">
     <meta name="msapplication-config" content="/resources/browserconfig.xml">
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -35,10 +35,16 @@
     </header>
     <main class="body-content post-list">
         <div class="container">
+            <form>
+                <input type="text" placeholder="<%= lang.search.placeholder %>" name="query" id="query">
+                <button id="searchbtn" class="btn search" type="submit"><%= lang.search.button %> </button>
+            </form>
+        </div>
+        <div class="container">
             <ul>
-                <% videos.forEach(e => { %>
+                <% tvShows.items.forEach(e => { %>
                     <li class="item">
-                        <a href="view/<%= e.name + "." + e.type %>">
+                        <a href="/tv/<%= e.name %>">
                             <%= e.name %>
                         </a>
                     </li>
@@ -46,6 +52,16 @@
             </ul>
         </div>
     </main>
+
+    <script>
+        let search, searchbtn;
+        search = document.getElementById("query");
+        searchbtn = document.getElementById("searchbtn");
+        searchbtn.addEventListener("click",e=>{
+            e.preventDefault();
+            location.href = "/tv-search/" + search.value
+        })
+    </script>
 </body>
 </html>
 
