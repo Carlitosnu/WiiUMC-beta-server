@@ -21,7 +21,7 @@ router.get("/",langFiles,(req,res)=>{
     }
 })
 router.get("/admin/files",(req,res)=>{
-    if(req.headers["user-agent"].includes("Nintendo WiiU")){
+    if(req.headers["user-agent"].includes("Nintendo WiiU") || settings.debug){
         return res.send("Sorry this route is only for PC & other devices!!")
     }else{
         return res.render("files")
