@@ -1,2 +1,5 @@
 node_modules
-public/videos
+public/videos/*.mp4
+public/videos/*.mkv
+public/videos/*.webp
+public/videos/*.ogg

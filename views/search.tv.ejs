@@ -1,34 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <title><%= video.name  %> </title>
     <link rel="icon" type="image/png" href="/resources/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/resources/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/resources/android-192x192.png" sizes="192x192">
     <link rel="apple-touch-icon" href="/resources/apple-touch-icon-180x180.png" sizes="180x180">
     <meta name="msapplication-config" content="/resources/browserconfig.xml">
     <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
     <header>
-            <h1 class="logo item-start">
-                WiiUMC
-            </h1>
-            <div>
-                <p>WiiUMC es un reproductor de musica customizado para la consola WiiU</p>
-                <p><b>&copy; Carlos Núñez</b></p>
-            </div>
-
+        <h1 class="logo item-start">
+            <%= lang.search.title %> 
+        </h1>
     </header>
-    <div class="app container" id="app">
-        <p style="text-align: center; padding: 205px; font-weight: 700;">Ingresa en tu WiiU a la ruta de tu PC y disfruta de tu multimedia <br/> <%= ip %> </p>
+    <div class="container">
+        <form action="/search" method="POST">
+            <input type="text" placeholder="<%= lang.search.placeholder %> ">
+            <button type="submit"><%= lang.search.button %> </button>
+        </form>
     </div>
 </body>
 </html>
-

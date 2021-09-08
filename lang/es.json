@@ -4,7 +4,13 @@
         "music": "Musica",
         "screenshot": "Captura de pantalla",
         "image": "Imagenes",
-        "close": "Salir"
+        "close": "Salir",
+        "tv": "TV en vivo"
+    },
+    "search":{
+        "title":"Busqueda de videos/canales de tv",
+        "placeholder": "Escribe algo...",
+        "button": "Buscar"
     },
     "Description":"WiiUMC es un reproductor multimedia desarrollado para WiiU",
     "screenshot":{
