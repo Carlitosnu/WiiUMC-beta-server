@@ -44,7 +44,6 @@ const getFolderFiles = () => {
         }
     })
     files = dirs;
-    console.log(dirs);
 }
 
 fs.watch(f,{encoding: "utf-8"},() => getFolderFiles());
@@ -71,8 +70,7 @@ const m3uParser = () => {
             encoding: "utf-8"
         })).items)
     })
-    tv = flatten(tv)    
-    console.log(tv);
+    tv = flatten(tv)
 }
 m3uParser()
 module.exports = {

@@ -17,7 +17,17 @@
         "title": "Take Screenshot",
         "form":{
             "label": "Upload to Imgur?",
-            "button": "Upload it!"
+            "instructions": "If you have a game opened, you can press \"Take Screenshot\" and download it in another device",
+            "file": "Take a Screenshot"
+
+        },
+        "client": {
+            "input": "Type the screenshot code here.",
+            "button": "See image"
+        },
+        "description": "In this section you can upload your game screenshots and download it in other device",
+        "postIt": {
+            "goto": "In a diferent device open ScreenShot Service and put this code:"
         }
     },
     "dev": "This section is not fully developed, we're working to finish it!"

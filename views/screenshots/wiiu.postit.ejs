@@ -26,18 +26,10 @@
         <h2><%= lang.screenshot.title%></h2>
         <p><%= lang.screenshot.description %></p>
     </header>
-    <div id="main" class="container">
-        <form id="form" method="POST" action="/screenshot" enctype="multipart/form-data">
-            <p><%= lang.screenshot.form.instructions%></p>
-            <label for="screenshot" class="btn"><%= lang.screenshot.form.file %></label>
-            <input type="file" name="screenshot" id="screenshot"/>
-        </form>
+    <div id="postIt">
+        <h3><%= lang.screenshot.postIt.goto %></h3>
+        <p><%= refcode %></p>
     </div>
 
-    <script type="text/javascript">
-        document.getElementById('screenshot').onchange = function() {
-            document.getElementById('form').submit();
-        }
-    </script>
 </body>
 </html>

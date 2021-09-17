@@ -3,13 +3,28 @@ const {Router} = require("express");
 const { writeFileSync } = require("fs");
 const router = Router();
 const path = require("path");
+const { getDatabase, createConnection } = require("./database");
+const { sendImage } = require("./discord/integration");
 const { getFolderFiles, files, removeFile,m3uParser } = require("./files");
 const { langFiles } = require("./getIP");
 const { sucess } = require("./logger");
-const settings = require("./settings.json")
+const settings = require("./settings.json");
+const { upload } = require("./utils/imgur");
+const {isWiiU} = require("./utils/isWiiU");
+createConnection()
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+   }
+   return result;
+}
 
-router.get("/",langFiles,(req,res)=>{
-    if(req.headers["user-agent"].includes("Nintendo WiiU") || settings.debug){
+router.get("/",langFiles,isWiiU,(req,res)=>{
+    if(req.isWiiU){
         return res.render("index",{
             lang: req.lang,
             videos: files()
@@ -74,8 +89,8 @@ router.get("/view/:videoname",(req,res)=>{
 
 })
 
-router.get("/api/admin/demomode",(req,res)=>{
-    if(req.headers["user-agent"].includes("Nintendo WiiU")){
+router.get("/api/admin/demomode", isWiiU,(req,res)=>{
+    if(req.isWiiU){
         return res.status(400).send("Sorry this action only can be with a pc")
     }
     if(!settings.debug) {
@@ -99,19 +114,47 @@ router.get("/api/media",(req,res)=>{
 })
 
 // Routes for Screenshot service
-router.get("/screenshot",langFiles,(req,res)=>{
-    if(req.headers["user-agent"].includes("Nintendo WiiU") || settings.debug){
+router.get("/screenshot",isWiiU,langFiles,(req,res)=>{
+    if(req.isWiiU){
         res.render("screenshots/wiiu.view.ejs",{
             lang: req.lang
         });
     }else{
-        res.send("Pendiente...")
+        res.render("screenshots/pc.view.ejs",{
+            lang: req.lang
+        })
     }
 })
-router.post("/screenshot",langFiles,(req,res)=>{
-    const screenshot = req.files;
-    console.log(screenshot);
+router.get("/screenshot-recive/:id",(req,res)=>{
+    const {id} = req.params
 })
+router.post("/screenshot",langFiles,async (req,res)=>{
+    const {screenshot} = req.files;
+    const id = makeid(5);
+    const fname = id + "." + screenshot.mimetype.split("/")[1]
+    await screenshot.mv(__dirname + "/public/images/screenshots/" + fname,async(e)=> {
+        const imgurURL = await upload(fname);
+        console.log(imgurURL);
+        if(e){
+            console.log("An error found in router.js:136")
+           return console.log(e)
+        }
+        getDatabase().get("images").push({
+            id,
+            path: `/images/screenshots/${id}.png`,
+            imgurURL
+        }).write()
+        
+        sendImage(imgurURL)
+
+        res.render("screenshots/wiiu.postit.ejs",{
+            lang: req.lang,
+            refcode: id
+        })
+    })
+
+})
+
 router.get("/music",langFiles,(req,res)=>{
     res.render("develop",{
         type: req.lang.nav.music,

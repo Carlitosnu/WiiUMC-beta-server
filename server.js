@@ -2,15 +2,20 @@ const express = require("express")
 const morgan = require("morgan");
 const { getFolderFiles } = require("./files");
 const { sucess } = require("./logger");
-const { router } = require("./router");
+const { router, registerRouter } = require("./router");
 const fileupload = require("express-fileupload")
-const settings = require("./settings.json")
+const settings = require("./settings.json");
+const { createConnection } = require("./database");
+createConnection()
+
 const app = express();
 
 const ip = require("ip").address()
 app.use(morgan("dev"));
 
-getFolderFiles()
+
+
+
 app.use(express.json());
 app.use(fileupload())
 app.use(express.urlencoded({extended:false}))

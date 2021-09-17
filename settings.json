@@ -1,4 +1,14 @@
 {
     "debug": true,
-    "port": 8080
+    "port": 8080,
+    "discord_integration": {
+        "enable": true,
+        "token": "ODY3OTQ4NTI0ODA4MDc3MzIy.YPoiDg.3dUX03fkIiV2RWJylNt7xGqPD8I",
+        "channel_name": "dev-team",
+        "guildId": "886439058505609378"
+    },
+    "imgur":{
+        "clientid": "a321d58ab7123b9",
+        "CanUpload": true
+    }
 }

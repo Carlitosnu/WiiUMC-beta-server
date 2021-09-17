@@ -17,7 +17,16 @@
         "title": "Capturar Pantalla",
         "form":{
             "label": "¿Subir a Imgur?",
-            "button": "¡Subir!"
+            "file": "Tomar una captura de pantalla",
+            "instructions": "Si tienes un juego abierto puedes presionar el boton \"Tomar captura de pantalla\" y en otro dispocitivo descargarla"
+        },
+        "client": {
+            "input": "Ingresa el codigo de la captura.",
+            "button": "Ver imagen"
+        },
+        "description": "En esta sección puedes subir capturas de pantalla de tus juegos y descargarla en otro dispocitivo",
+        "postIt": {
+            "goto": "Ahora ve en otro dispocitivo y abre la sección Capturas de Pantalla e introduce el siguiente codigo"
         }
     },
     "dev": "Esta sección todavia no esta terminada, estamos trabajando para terminarla pronto!"
