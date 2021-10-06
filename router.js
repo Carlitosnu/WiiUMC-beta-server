@@ -22,7 +22,7 @@ function makeid(length) {
    }
    return result;
 }
-
+router.get("/keepalive", (req,res)=>res.json({status: "alive"}));
 router.get("/",langFiles,isWiiU,(req,res)=>{
     if(req.isWiiU){
         return res.render("index",{

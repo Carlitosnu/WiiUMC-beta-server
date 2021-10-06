@@ -1,11 +1,12 @@
 const express = require("express")
-const morgan = require("morgan");
+	const morgan = require("morgan");
 const { getFolderFiles } = require("./files");
 const { sucess } = require("./logger");
 const { router, registerRouter } = require("./router");
 const fileupload = require("express-fileupload")
 const settings = require("./settings.json");
 const { createConnection } = require("./database");
+const cors = require("cors")
 createConnection()
 
 const app = express();
@@ -30,7 +31,15 @@ app.use("/resources",express.static(__dirname + '/public/resources'));
 app.use("/images",express.static(__dirname + '/public/images'));
 app.use("/manifest.json",express.static(__dirname + '/public/manifest.json'));
 
-app.use("/",router)
+app.use(cors({
+	origin:"*",
+	optionsSuccessStatus: 200
+}));
+
+app.options("*", cors({origin:"*", optionsSuccessStatus:200}));
+
+app.use("/", router);
+
 app.set("view engine","ejs")
 app.set("views",__dirname + "/views")
 app.listen(PORT,()=>{

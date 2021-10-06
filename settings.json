@@ -1,6 +1,6 @@
 {
     "debug": true,
-    "port": 8080,
+    "port": 5000,
     "discord_integration": {
         "enable": true,
         "token": "ODY3OTQ4NTI0ODA4MDc3MzIy.YPoiDg.3dUX03fkIiV2RWJylNt7xGqPD8I",
