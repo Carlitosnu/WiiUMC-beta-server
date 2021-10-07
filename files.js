@@ -1,4 +1,5 @@
 const uuid = require("uuid").v4;
+const ffmpeg = require("fluent-ffmpeg")
 function flatten(array)
 {
     if(array.length == 0)
@@ -14,23 +15,41 @@ const parser = require("iptv-playlist-parser")
 let files = []
 let tv = []
 const f = path.resolve(__dirname + "/public/videos")
+const th_dir = path.join(__dirname,"/public/thumb")
 
 if(!fs.existsSync(f)){
     fs.mkdirSync(f,0744)
 }
+
+if(!fs.existsSync(th_dir)){
+    fs.mkdirSync(th_dir);
+}
+
+let thumbs = fs.readdirSync(th_dir,{encoding: "utf-8"});
 
 const getFolderFiles = () => {
     let fls = fs.readdirSync(f,{
         encoding: "utf-8"
     })
 
+    console.log(thumbs);
     const dirs = []
-    fls.forEach(e=>{
+
+    fls.forEach(async e=>{
         let id = uuid()
+        if(!thumbs.find(i => i === e.replace(".mp4",".png")) && e.endsWith(".mp4")){
+            await ffmpeg({source: f + "/" + e})
+            .takeScreenshots({
+                filename: e.replace(".mp4",""),
+                timemarks: [3]
+            },th_dir)
+            
+        }
         if(e.endsWith(".mp4")){
             dirs.push({
                 name: e.replace(".mp4",""),
                 type: "mp4",
+                thumb: "/thumb/"+ thumbs.find(i => i === e.replace(".mp4", ".png") ),
                 ubication:`/videos/${e}`,
                 id
             })
@@ -43,11 +62,13 @@ const getFolderFiles = () => {
             })
         }
     })
+
     files = dirs;
 }
 
 fs.watch(f,{encoding: "utf-8"},() => getFolderFiles());
 fs.watch(f + "/m3u",{encoding: "utf-8"},() => m3uParser());
+fs.watch(th_dir, ()=> thumbs = fs.readdirSync(th_dir,{encoding: "utf-8"}))
 
 console.log(files);
 
@@ -73,6 +94,7 @@ const m3uParser = () => {
     tv = flatten(tv)
 }
 m3uParser()
+getFolderFiles()
 module.exports = {
     getFolderFiles,
     files: (()=>files),

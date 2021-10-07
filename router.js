@@ -10,6 +10,7 @@ const { langFiles } = require("./getIP");
 const { sucess } = require("./logger");
 const settings = require("./settings.json");
 const { upload } = require("./utils/imgur");
+const ffmpeg = require("fluent-ffmpeg")
 const {isWiiU} = require("./utils/isWiiU");
 createConnection()
 function makeid(length) {
@@ -59,6 +60,12 @@ router.post("/api/admin/video",(req,res)=>{
 
     writeFileSync(path.join(__dirname,"/public/videos/"+file.name),file.data,{encoding: "utf-8"});
 
+    ffmpeg({source: path.join(__dirname,"/public/videos/" + file.name)})
+        .takeScreenshots({
+            filename: file.name.replace(".mp4",""),
+            timemarks: [3]
+        },path.join(__dirname,"/public/thumb"))
+    
     return res.json({
         ubication: __dirname + "/public/videos",
         files: files()
@@ -169,11 +176,11 @@ router.get("/images",langFiles,(req,res)=>{
     })
 })
 
-router.get("/api/tv",(req,res)=>[
+router.get("/api/tv",(req,res)=>{
     res.json({
         list: m3uParser()
     })
-])
+})
 router.get("/tv/:showid",(req,res)=>{
     const {showid} = req.params;
     const video = m3uParser().find(e=>e.name === showid);
@@ -203,5 +210,13 @@ router.get("/tv-search/:query",langFiles,(req,res)=>{
             items: results
         }
     })
+})
+
+router.get("/api/video/:id",(req,res)=>{
+    const video = files().find(i => i.id === req.params.id);
+    if(!video){
+        return res.status(404).json({error: "Video no encontrado"})
+    }
+    return res.json(video)
 })
 module.exports = {router}

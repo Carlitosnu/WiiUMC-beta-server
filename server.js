@@ -30,6 +30,7 @@ app.use("/javascript",express.static(__dirname + '/public/javascript'));
 app.use("/resources",express.static(__dirname + '/public/resources'));
 app.use("/images",express.static(__dirname + '/public/images'));
 app.use("/manifest.json",express.static(__dirname + '/public/manifest.json'));
+app.use("/thumb",express.static(__dirname + '/public/thumb'));
 
 app.use(cors({
 	origin:"*",
