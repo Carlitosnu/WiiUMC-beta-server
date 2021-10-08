@@ -86,7 +86,6 @@ const m3uParser = () => {
     const dir = fs.readdirSync(f + "/m3u",{encoding: "utf-8"})
     dir.forEach(e=>{
         if(!e.endsWith(".m3u")) return;
-        console.log(e);
         tv.push(parser.parse(fs.readFileSync(f + "/m3u/"+e, {
             encoding: "utf-8"
         })).items)
