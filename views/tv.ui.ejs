@@ -15,7 +15,6 @@
 </head>
 
 <body>
-    <div class="btn grid-btn">Vista de grilla</div>
         <menu>
             <ul>
                 <li><a href="/"><%= lang.nav.video %></a> </li>
@@ -45,6 +44,7 @@
             <ul>
                 <% tvShows.items.forEach(e => { %>
                     <li class="item">
+                      <img src="<%= e.tvg.logo %>"/>
                         <a href="/tv/<%= e.name %>">
                             <%= e.name %>
                         </a>

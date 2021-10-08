@@ -38,6 +38,7 @@
             <ul>
                 <% videos.forEach(e => { %>
                     <li class="item">
+                      <img src="<%= e.thumb %>"/>
                         <a href="view/<%= e.name + "." + e.type %>">
                             <%= e.name %>
                         </a>

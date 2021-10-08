@@ -212,6 +212,22 @@ router.get("/tv-search/:query",langFiles,(req,res)=>{
     })
 })
 
+router.get("/api/tv/:id",(req,res)=>{
+    const query = req.params.id;
+    const tvShows = m3uParser();
+
+    const result = tvShows.find(e => e.name.toLowerCase() === query.toLowerCase())
+    console.log(result);
+    if(!result){
+        return res.status(404).json({
+            error: "No existe!"
+        })
+    }
+
+    res.status(200).json(result)
+
+})
+
 router.get("/api/video/:id",(req,res)=>{
     const video = files().find(i => i.id === req.params.id);
     if(!video){

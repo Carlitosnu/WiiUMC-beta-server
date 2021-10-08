@@ -9,9 +9,14 @@
     background: rgb(255,148,0);
     color: #ffffff;
 }
+body{
+  background: #2d2d2d;
+  color: #fff;
+}
 .container{
     max-width: 90%;
     margin:auto;
+    display: --webkit-inline-block;
 }
 
 header{ 
@@ -44,15 +49,18 @@ li{
 }
 .item-end{
     float: right;
-    margin-left: 15px;
 }
 
 .item{
-    background-color: #aaaaaa;
-    border: 1px #e0e0ee solid;
+    background-color: rgba(0,0,0,0.5);
     margin-bottom: 5px;
     padding: 15px;
-}
+    display: inline-block;
+    width: 22%;
+    height:200px;
+    max-height: 200px;
+    overflow: hidden;
+  }
 #quitarVideo{
     text-align: end;
     padding: 15px;
@@ -233,4 +241,11 @@ form{
     font-weight: 700;
     width: 35%;
     margin-right: 5px;
+}
+
+.item img{
+  width: 100%;
+  max-heigth: 159px;
+/*  height: 75%;*/
+  display: block;
 }
