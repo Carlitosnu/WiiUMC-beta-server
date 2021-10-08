@@ -140,6 +140,7 @@ router.post("/screenshot",langFiles,async (req,res)=>{
     const id = makeid(5);
     const fname = id + "." + screenshot.mimetype.split("/")[1]
     await screenshot.mv(__dirname + "/public/images/screenshots/" + fname,async(e)=> {
+      if(config.imgurURL.upload){
         const imgurURL = await upload(fname);
         console.log(imgurURL);
         if(e){
@@ -152,13 +153,19 @@ router.post("/screenshot",langFiles,async (req,res)=>{
             imgurURL
         }).write()
         
-        sendImage(imgurURL)
+        if(config.discord_integration.enable) sendImage(imgurURL);
 
         res.render("screenshots/wiiu.postit.ejs",{
             lang: req.lang,
             refcode: id
         })
-    })
+      }})
+    else{
+      getDatabase().get("images").push({
+        id,
+        path: `/images/screenshots/${id}.png`
+      }).write();
+    }
 
 })
 

@@ -4,3 +4,4 @@ public/videos/*.mkv
 public/videos/*.webp
 public/videos/*.ogg
 public/thumb/*.png
+settings.json

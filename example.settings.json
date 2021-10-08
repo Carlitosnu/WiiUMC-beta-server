@@ -1,0 +1,14 @@
+{
+    "debug": false,
+    "port": 5000,
+    "discord_integration": {
+        "enable": false,
+        "token":"",
+        "channel_name": "",
+        "guildId": ""
+    },
+    "imgur":{
+        "clientid": "",
+        "CanUpload": true
+    }
+}
