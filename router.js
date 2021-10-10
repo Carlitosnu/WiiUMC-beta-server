@@ -4,14 +4,20 @@ const { writeFileSync } = require("fs");
 const router = Router();
 const path = require("path");
 const { getDatabase, createConnection } = require("./database");
-const { sendImage } = require("./discord/integration");
 const { getFolderFiles, files, removeFile,m3uParser } = require("./files");
 const { langFiles } = require("./getIP");
 const { sucess } = require("./logger");
 const settings = require("./settings.json");
-const { upload } = require("./utils/imgur");
 const ffmpeg = require("fluent-ffmpeg")
 const {isWiiU} = require("./utils/isWiiU");
+
+if(settings.discord_integration.enable){
+    const { sendImage } = require("./discord/integration");
+}
+if(settings.imgur.CanUpload){
+    const { upload } = require("./utils/imgur");
+}
+
 createConnection()
 function makeid(length) {
     var result           = '';
@@ -159,14 +165,15 @@ router.post("/screenshot",langFiles,async (req,res)=>{
             lang: req.lang,
             refcode: id
         })
-      }})
+      }
     else{
       getDatabase().get("images").push({
         id,
         path: `/images/screenshots/${id}.png`
       }).write();
-    }
+    }}
 
+    )
 })
 
 router.get("/music",langFiles,(req,res)=>{

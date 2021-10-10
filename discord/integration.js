@@ -1,8 +1,8 @@
+const setting = require("../settings.json");
 const discord = require("discord.js");
 const {discord_integration} = require("../settings.json");
 
 const bot = new discord.Client();
-
 const sendImage = (imageURL) => {
     const guild = bot.guilds.cache.find(guild => guild.id === discord_integration.guildId);
     const channel = guild.channels.cache.find(channel => channel.name === discord_integration.channel_name);
